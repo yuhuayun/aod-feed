@@ -6,7 +6,7 @@ To get the code:
 -------------------
 Clone the repository:
 
-    $ git clone https://github.com/yuhuayun/aod-feed.git/aod-feed.git
+    $ demon:git clone https://github.com/yuhuayun/aod-feed.git/aod-feed.git
 
 
 Restful API 文档访问地址
