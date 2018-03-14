@@ -1,0 +1,22 @@
+package ${package.Mapper};
+
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+
+
+import ${package.Entity}.${entity};
+import ${superMapperClassPackage};
+
+/**
+ * <p>
+ * $!{table.comment} Mapper 接口
+ * </p>
+ *
+ * @author ${author}
+ * @date   ${date}
+ */
+@Mapper
+@Component
+public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+
+}

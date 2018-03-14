@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sinosoft.aod.feed.dao.PanelMapper">
+
+    <resultMap type="com.sinosoft.aod.feed.model.Panel" id="panelMap">
+        <result property="id" column="id"/>
+        <result property="caseId" column="case_id"/>
+        <result property="taskId" column="task_id"/>
+        <result property="custId" column="cust_id"/>
+        <result property="priority" column="priority"/>
+        <result property="phone1" column="phone1"/>
+        <result property="phone2" column="phone2"/>
+        <result property="phone3" column="phone3"/>
+        <result property="phone4" column="phone4"/>
+        <result property="phone5" column="phone5"/>
+        <result property="phone6" column="phone6"/>
+        <result property="reserve1" column="reserve1"/>
+        <result property="reserve2" column="reserve2"/>
+        <result property="reserve3" column="reserve3"/>
+        <result property="reserve4" column="reserve4"/>
+        <result property="reserve5" column="reserve5"/>
+        <result property="reserve6" column="reserve6"/>
+        <result property="reserve7" column="reserve7"/>
+        <result property="reserve8" column="reserve8"/>
+        <result property="reserve9" column="reserve9"/>
+        <result property="reserve10" column="reserve10"/>
+        <result property="reserve11" column="reserve11"/>
+        <result property="reserve12" column="reserve12"/>
+        <result property="reserve13" column="reserve13"/>
+        <result property="reserve14" column="reserve14"/>
+        <result property="reserve15" column="reserve15"/>
+        <result property="reserve16" column="reserve16"/>
+        <result property="reserve17" column="reserve17"/>
+        <result property="reserve18" column="reserve18"/>
+        <result property="reserve19" column="reserve19"/>
+        <result property="reserve20" column="reserve20"/>
+        <result property="reserve21" column="reserve21"/>
+        <result property="reserve22" column="reserve22"/>
+        <result property="reserve23" column="reserve23"/>
+        <result property="reserve24" column="reserve24"/>
+        <result property="reserve25" column="reserve25"/>
+        <result property="reserve26" column="reserve26"/>
+        <result property="reserve27" column="reserve27"/>
+        <result property="reserve28" column="reserve28"/>
+        <result property="reserve29" column="reserve29"/>
+        <result property="reserve30" column="reserve30"/>
+        <result property="reserve31" column="reserve31"/>
+        <result property="reserve32" column="reserve32"/>
+        <result property="reserve33" column="reserve33"/>
+        <result property="reserve34" column="reserve34"/>
+        <result property="reserve35" column="reserve35"/>
+        <!-- 每个表必有的七个字段，继承自BaseDto -->
+        <result property="tenantId" column="TENANT_ID"/>
+        <result property="createId" column="CREATE_ID"/>
+        <result property="createTime" column="CREATE_TIME"/>
+        <result property="updateId" column="UPDATE_ID"/>
+        <result property="updateTime" column="UPDATE_TIME"/>
+        <result property="validStatus" column="VALID_STATUS"/>
+        <result property="deleteFlag" column="DELETE_FLAG"/>
+        <!-- 关联查询创建人和修改人姓名 -->
+        <result property="createName" column="CREATE_NAME"/>
+        <result property="updateName" column="UPDATE_NAME"/>
+        <!-- 其它关联查询出的字段 -->
+    </resultMap>
+
+    <resultMap type="com.sinosoft.aod.feed.model.Panel" id="panelAspectMap">
+        <result property="id" column="id"/>
+        <result property="serviceId" column="service_id"/>
+        <result property="priority" column="priority"/>
+        <result property="phone1" column="phone1"/>
+        <result property="phone2" column="phone2"/>
+        <result property="phone3" column="phone3"/>
+        <result property="phone4" column="phone4"/>
+        <result property="phone5" column="phone5"/>
+        <result property="phone6" column="phone6"/>
+        <result property="reserve16" column="reserve16"/>
+        <result property="reserve17" column="reserve17"/>
+        <result property="reserve18" column="reserve18"/>
+        <result property="reserve19" column="reserve19"/>
+        <result property="reserve20" column="reserve20"/>
+        <result property="reserve21" column="reserve21"/>
+        <result property="reserve22" column="reserve22"/>
+        <result property="reserve23" column="reserve23"/>
+        <result property="reserve24" column="reserve24"/>
+        <result property="reserve25" column="reserve25"/>
+        <result property="reserve26" column="reserve26"/>
+        <result property="reserve27" column="reserve27"/>
+        <result property="reserve28" column="reserve28"/>
+        <result property="reserve29" column="reserve29"/>
+        <result property="reserve30" column="reserve30"/>
+        <result property="reserve31" column="reserve31"/>
+        <result property="reserve32" column="reserve32"/>
+        <result property="reserve33" column="reserve33"/>
+        <result property="reserve34" column="reserve34"/>
+        <result property="reserve35" column="reserve35"/>
+    </resultMap>
+
+    <insert id="insertPanels" parameterType="java.util.List">
+        insert into crm_panel
+        (id,case_id,task_id,cust_id,priority,phone1,phone2,phone3,phone4,phone5,phone6,reserve1,reserve2,reserve3,reserve4,reserve5,reserve6,reserve7,reserve8,reserve9,
+        reserve10,reserve11,reserve12,reserve13,reserve14,reserve15,reserve16,reserve17,reserve18,reserve19,reserve20,reserve21,reserve22,reserve23,reserve24,
+        reserve25,reserve26,reserve27,reserve28,reserve29,reserve30,reserve31,reserve32,reserve33,reserve34,reserve35,status_,create_id,create_time,update_id,
+        update_time,delete_flag)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=INTEGER},#{item.caseId,jdbcType=INTEGER},#{item.taskId,jdbcType=VARCHAR},#{item.custId,jdbcType=VARCHAR},#{item.priority,jdbcType=VARCHAR},#{item.phone1,jdbcType=VARCHAR},
+            #{item.phone2,jdbcType=VARCHAR},#{item.phone3,jdbcType=VARCHAR},#{item.phone4,jdbcType=VARCHAR},#{item.phone5,jdbcType=VARCHAR},#{item.phone6,jdbcType=VARCHAR},
+            #{item.reserve1,jdbcType=INTEGER},#{item.reserve2,jdbcType=INTEGER},#{item.reserve3,jdbcType=INTEGER},#{item.reserve4,jdbcType=INTEGER},#{item.reserve5,jdbcType=INTEGER},
+            #{item.reserve6,jdbcType=DOUBLE},#{item.reserve7,jdbcType=DOUBLE},#{item.reserve8,jdbcType=DOUBLE},#{item.reserve9,jdbcType=DOUBLE},#{item.reserve10,jdbcType=DOUBLE},
+            #{item.reserve11,jdbcType=TIMESTAMP},#{item.reserve12,jdbcType=TIMESTAMP},#{item.reserve13,jdbcType=TIMESTAMP},#{item.reserve14,jdbcType=TIMESTAMP},#{item.reserve15,jdbcType=TIMESTAMP},
+            #{item.reserve16,jdbcType=VARCHAR},#{item.reserve17,jdbcType=VARCHAR},#{item.reserve18,jdbcType=VARCHAR},#{item.reserve19,jdbcType=VARCHAR},#{item.reserve20,jdbcType=VARCHAR},
+            #{item.reserve21,jdbcType=VARCHAR},#{item.reserve22,jdbcType=VARCHAR},#{item.reserve23,jdbcType=VARCHAR},#{item.reserve24,jdbcType=VARCHAR},#{item.reserve25,jdbcType=VARCHAR},
+            #{item.reserve26,jdbcType=VARCHAR},#{item.reserve27,jdbcType=VARCHAR},#{item.reserve28,jdbcType=VARCHAR},#{item.reserve29,jdbcType=VARCHAR},#{item.reserve30,jdbcType=VARCHAR},
+            #{item.reserve31,jdbcType=VARCHAR},#{item.reserve32,jdbcType=VARCHAR},#{item.reserve33,jdbcType=VARCHAR},#{item.reserve34,jdbcType=VARCHAR},#{item.reserve35,jdbcType=VARCHAR},
+            #{item.status,jdbcType=VARCHAR},#{item.createId,jdbcType=INTEGER},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateId,jdbcType=INTEGER},#{item.updateTime,jdbcType=TIMESTAMP},
+            #{item.deleteFlag,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+
+    <select id="uploadPanels" resultMap="panelAspectMap">
+        select
+        p.id,ci.service_id,p.priority,p.phone1,p.phone2,p.phone3,p.phone4,p.phone5,p.phone6,p.reserve16,p.reserve17,p.reserve18,
+        p.reserve19,p.reserve20,p.reserve21,p.reserve22,p.reserve23,p.reserve24,p.reserve25,p.reserve26,p.reserve27,p.reserve28,
+        p.reserve29,p.reserve30,p.reserve31,p.reserve32,p.reserve33,p.reserve34,p.reserve35
+        from crm_case_info ci left join crm_panel p on ci.id=p.case_id
+        where 1=1
+        <if test="panel.serviceId != null and panel.serviceId != '' ">
+            and ci.service_id = #{panel.serviceId, jdbcType=VARCHAR}
+        </if>
+        <choose>
+            <when test="panel.panelIds !=null and panel.panelIds.size > 0">
+                and p.id in
+                <foreach collection="panel.panelIds" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </when>
+            <otherwise>
+                and p.status_ = '1'
+            </otherwise>
+        </choose>
+        order by p.create_time
+        <if test="panel.feednumber != null and panel.feednumber != '' ">
+            limit #{panel.feednumber, jdbcType=INTEGER}
+        </if>
+    </select>
+
+    <!--剔除号码-->
+    <update id="deleteByPhone" parameterType="com.sinosoft.aod.feed.model.Panel">
+    update crm_panel set delete_flag='Y',update_time= now()
+    where phone1 like concat('%',#{panel.phone,jdbcType=VARCHAR})
+    or phone2 like concat('%',#{panel.phone,jdbcType=VARCHAR})
+    or phone3 like concat('%',#{panel.phone,jdbcType=VARCHAR})
+    or phone4 like concat('%',#{panel.phone,jdbcType=VARCHAR})
+    or phone5 like concat('%',#{panel.phone,jdbcType=VARCHAR})
+    or phone6 like concat('%',#{panel.phone,jdbcType=VARCHAR})
+
+</update>
+
+
+</mapper>

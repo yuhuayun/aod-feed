@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sinosoft.aod.feed.dao.PanelErrorMapper">
+
+    <insert id="insertPanelErrors" parameterType="java.util.List">
+        insert into crm_panel_error
+        (id,case_id,abnormal_type,error_line,error_type,error_info,create_id,create_time,update_id,update_time)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=INTEGER},#{item.caseId,jdbcType=INTEGER},#{item.abnormalType,jdbcType=VARCHAR},#{item.errorLine,jdbcType=INTEGER},
+            #{item.errorType,jdbcType=VARCHAR},#{item.errorInfo,jdbcType=VARCHAR},#{item.createId,jdbcType=INTEGER},#{item.createTime,jdbcType=TIMESTAMP},
+            #{item.updateId,jdbcType=INTEGER},#{item.updateTime,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+</mapper>

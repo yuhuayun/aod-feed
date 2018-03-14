@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sinosoft.aod.feed.dao.MonitorMapper">
+
+    <resultMap id="monitor" type="com.sinosoft.aod.feed.model.Monitor">
+
+        <result property="serviceId" column="SERVER_ID"></result>
+        <result property="serviceName" column="SERVER_NAME"></result>
+        <result property="listSum" column="LIST_SUM"></result>
+        <result property="imPlatformNum" column="IMPLATFORM_NUM"></result>
+        <result property="dialNum" column="DIAL_NUM"></result>
+        <result property="successNum" column="SUCCESS_NUM"></result>
+        <result property="status" column="STATUS"></result>
+        <result property="time" column="TIME"></result>
+
+    </resultMap>
+
+    <!--查询监控数据-->
+    <select id="queryMonitorData" resultMap="monitor">
+		SELECT
+	b.service_id AS SERVER_ID,
+	b.service_name AS SERVER_NAME,
+	b.total_count AS LIST_SUM,
+	b.create_time AS TIME,
+	s.status_ AS STATUS,
+	a.upload_count AS IMPLATFORM_NUM,
+	ifnull(c.DIAL_NUM, 0) AS DIAL_NUM,
+	ifnull(d.SUCCESS_NUM, 0) AS SUCCESS_NUM
+FROM
+	(
+		SELECT
+			count(1) upload_count,
+			case_id
+		FROM
+			crm_panel
+		GROUP BY
+			case_id
+	) a
+LEFT JOIN (
+	SELECT
+		id,
+		service_id,
+		service_name,
+		total_count,
+		create_time
+	FROM
+		crm_case_info
+) b ON a.case_id = b.id
+LEFT JOIN (
+	SELECT
+		count(panel_id) AS DIAL_NUM,
+		panel_id
+	FROM
+		crm_panel_dial
+	GROUP BY
+		panel_id
+) c ON c.panel_id = a.case_id
+LEFT JOIN (
+	SELECT
+		count(panel_id) AS SUCCESS_NUM,
+		panel_id
+	FROM
+		crm_panel_dial
+	WHERE
+		agent_id != 'null'
+	GROUP BY
+		panel_id
+) d ON a.case_id = d.panel_id
+LEFT JOIN crm_service_config s ON s.service_id = b.service_id
+ORDER BY
+	b.service_id,
+	b.create_time
+
+	</select>
+</mapper>
